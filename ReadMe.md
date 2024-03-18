@@ -12,67 +12,74 @@ python -m http.server 9000
 $ tree
 .
 |-- ReadMe.md
-|-- index.html <!-- 新增 -->
+|-- dist
+|   `-- main.js
+|-- index.html
 |-- package.json
-`-- src
-    `-- index.js <!-- 新增 -->
+|-- src
+|   `-- index.js
+`-- webpack.config.js <!-- 新增 -->
+
+2 directories, 6 files
+
 
 ```
 
 ```diff
-
----
- index.html   | 10 ++++++++++
- package.json |  2 +-
- src/index.js |  7 +++++++
- 4 files changed, 24 insertions(+), 10 deletions(-)
- create mode 100644 index.html
- create mode 100644 src/index.js
-
+ 
 diff --git a/index.html b/index.html
-new file mode 100644
-index 0000000..5edd372
---- /dev/null
+index 5edd372..bc312c7 100644
+--- a/index.html
 +++ b/index.html
-@@ -0,0 +1,10 @@
-+<!DOCTYPE html>
-+<html>
-+<head>
-+    <meta charset="utf-8" />
-+    <title>webpack-trial</title>
-+</head>
-+<body>
-+<script src="./src/index.js"></script>
-+</body>
-+</html>
+@@ -5,6 +5,6 @@
+     <title>webpack-trial</title>
+ </head>
+ <body>
+-<script src="./src/index.js"></script>
++<script src="./dist/main.js"></script>
+ </body>
+ </html>
 \ No newline at end of file
 diff --git a/package.json b/package.json
-index 7d4db35..678ce18 100644
+index 678ce18..ac885d0 100644
 --- a/package.json
 +++ b/package.json
-@@ -2,7 +2,7 @@
-   "name": "webpack",
-   "version": "1.0.0",
+@@ -4,7 +4,8 @@
    "description": "```\r npm init -y\r ```",
--  "main": "index.js",
-+  "private": true,
+   "private": true,
    "scripts": {
-     "test": "echo \"Error: no test specified\" && exit 1"
+-    "test": "echo \"Error: no test specified\" && exit 1"
++    "test": "echo \"Error: no test specified\" && exit 1",
++    "build": "webpack"
    },
+   "keywords": [],
+   "author": "",
 diff --git a/src/index.js b/src/index.js
-new file mode 100644
-index 0000000..00cdcc0
---- /dev/null
+index 00cdcc0..f62d04f 100644
+--- a/src/index.js
 +++ b/src/index.js
-@@ -0,0 +1,7 @@
-+function component() {
-+  const element = document.createElement('div');
-+  element.innerHTML = 'Hello webpack'
-+  return element;
-+}
+@@ -1,6 +1,6 @@
+ function component() {
+   const element = document.createElement('div');
+-  element.innerHTML = 'Hello webpack'
++  element.innerHTML = 'Hello webpack in bundle'
+   return element;
+ }
+ 
+diff --git a/webpack.config.js b/webpack.config.js
+new file mode 100644
+index 0000000..7feef13
+--- /dev/null
++++ b/webpack.config.js
+@@ -0,0 +1,9 @@
++const path = require('path');
 +
-+document.body.appendChild(component());
++module.exports = {
++  entry: './src/index.js',
++  output: {
++    filename: 'main.js',
++    path: path.resolve(__dirname, 'dist'),
++  },
++};
 \ No newline at end of file
--- 
-2.29.0.windows.1
 ```
