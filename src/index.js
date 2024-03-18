@@ -1,6 +1,10 @@
+import {add} from "./add";
+
 function component() {
   const element = document.createElement('div');
-  element.innerHTML = 'Hello webpack in bundle'
+  const [a, b] = [10 , 20];
+  const result = add(a, b);
+  element.innerHTML = `Hello webpack in bundle, ${a} + ${b} = ${result}`;
   return element;
 }
 
