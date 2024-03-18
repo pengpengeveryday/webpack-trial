@@ -7,6 +7,18 @@ python -m http.server 9000
 
 ### 代码差异点
 
+#### 目录结构
+```html
+$ tree
+.
+|-- ReadMe.md
+|-- index.html <!-- 新增 -->
+|-- package.json
+`-- src
+    `-- index.js <!-- 新增 -->
+
+```
+
 ```diff
 
 ---
