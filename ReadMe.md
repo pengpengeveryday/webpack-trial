@@ -1,4 +1,4 @@
-## 构建最简单的web页面演示
+## html应用webpack打包编译的js文件
 
 ### 将本文件夹挂载到服务器上
 ```
@@ -24,7 +24,7 @@ $ tree
 
 
 ```
-
+#### 源码差异点
 ```diff
  
 diff --git a/index.html b/index.html
